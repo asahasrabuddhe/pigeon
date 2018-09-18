@@ -1,4 +1,4 @@
-package pigeon
+package smtp
 
 import (
 	"net/smtp"

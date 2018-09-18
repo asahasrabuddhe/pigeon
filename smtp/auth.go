@@ -1,4 +1,4 @@
-package pigeon
+package smtp
 
 import (
 	"bytes"
@@ -9,9 +9,8 @@ import (
 
 // loginAuth implements LOGIN Auth Mechanism for smtp.Auth interface
 type loginAuth struct {
-	username string
-	password string
-	host     string
+	username, password string
+	host               string
 }
 
 func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {

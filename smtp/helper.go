@@ -1,4 +1,4 @@
-package pigeon
+package smtp
 
 import (
 	"crypto/tls"
@@ -24,4 +24,3 @@ var (
 func addr(host string, port int) string {
 	return fmt.Sprintf("%s:%d", host, port)
 }
-

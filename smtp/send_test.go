@@ -1,5 +1,4 @@
-package pigeon
-
+package smtp
 
 import (
 	"bytes"
@@ -79,4 +78,3 @@ func stubSend(t *testing.T, wantFrom string, wantTo []string, wantBody string) m
 		return nil
 	}
 }
-
