@@ -1,4 +1,4 @@
-package gomail
+package pigeon
 
 import (
 	"errors"
@@ -36,7 +36,7 @@ func (f SendFunc) Send(from string, to []string, msg io.WriterTo) error {
 func Send(s Sender, msg ...*Message) error {
 	for i, m := range msg {
 		if err := send(s, m); err != nil {
-			return fmt.Errorf("gomail: could not send email %d: %v", i+1, err)
+			return fmt.Errorf("pigeon: could not send email %d: %v", i+1, err)
 		}
 	}
 
@@ -66,7 +66,7 @@ func (m *Message) getFrom() (string, error) {
 	if len(from) == 0 {
 		from = m.header["From"]
 		if len(from) == 0 {
-			return "", errors.New(`gomail: invalid message, "From" field is absent`)
+			return "", errors.New(`pigeon: invalid message, "From" field is absent`)
 		}
 	}
 
@@ -110,7 +110,7 @@ func addAddress(list []string, addr string) []string {
 func parseAddress(field string) (string, error) {
 	addr, err := mail.ParseAddress(field)
 	if err != nil {
-		return "", fmt.Errorf("gomail: invalid address %q: %v", field, err)
+		return "", fmt.Errorf("pigeon: invalid address %q: %v", field, err)
 	}
 	return addr.Address, nil
 }

@@ -1,4 +1,4 @@
-package gomail
+package pigeon
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 	"net/smtp"
 )
 
-// loginAuth is an smtp.Auth that implements the LOGIN authentication mechanism.
+// loginAuth implements LOGIN Auth Mechanism for smtp.Auth interface
 type loginAuth struct {
 	username string
 	password string
@@ -24,11 +24,11 @@ func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
 			}
 		}
 		if !advertised {
-			return "", nil, errors.New("gomail: unencrypted connection")
+			return "", nil, errors.New("pigeon: unencrypted connection")
 		}
 	}
 	if server.Name != a.host {
-		return "", nil, errors.New("gomail: wrong host name")
+		return "", nil, errors.New("pigeon: wrong host name")
 	}
 	return "LOGIN", nil, nil
 }
@@ -44,6 +44,6 @@ func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
 	case bytes.Equal(fromServer, []byte("Password:")):
 		return []byte(a.password), nil
 	default:
-		return nil, fmt.Errorf("gomail: unexpected server challenge: %s", fromServer)
+		return nil, fmt.Errorf("pigeon: unexpected server challenge: %s", fromServer)
 	}
 }

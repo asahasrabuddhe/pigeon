@@ -1,4 +1,4 @@
-package gomail
+package pigeon
 
 import (
 	"encoding/base64"
@@ -148,7 +148,7 @@ func (w *messageWriter) addFiles(files []*file, isAttachment bool) {
 
 func (w *messageWriter) Write(p []byte) (int, error) {
 	if w.err != nil {
-		return 0, errors.New("gomail: cannot write as writer is in error")
+		return 0, errors.New("pigeon: cannot write as writer is in error")
 	}
 
 	var n int
