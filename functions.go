@@ -2,7 +2,7 @@ package pigeon
 
 import (
 	. "github.com/asahasrabuddhe/pigeon/email"
-	"github.com/asahasrabuddhe/pigeon/themes/default"
+	"github.com/asahasrabuddhe/pigeon/themes"
 	"github.com/imdario/mergo"
 )
 
@@ -26,7 +26,7 @@ func setDefaultEmailValues(e *Email) error {
 func setDefaultPigeonValues(h *Pigeon) error {
 	defaultTextDirection := LeftToRight
 	defaultPigeon := Pigeon{
-		Theme:         new(default_theme.Default),
+		Theme:         new(themes.Default),
 		TextDirection: defaultTextDirection,
 		Product: Product{
 			Name:          "Pigeon",
